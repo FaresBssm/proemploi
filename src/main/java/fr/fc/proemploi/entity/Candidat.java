@@ -9,12 +9,12 @@ import java.sql.Blob;
 
 @Entity
 @Data
-
 public class Candidat extends Utilisateur {
+
     @Id
-    long idCandidate;
+    private Long id;
     private Blob cv;
-    private Blob lettreMotivation;
-    private String profilLinkein;
+    private Blob motivationLetter;
+    private String linkedinProfile;
 
 }
