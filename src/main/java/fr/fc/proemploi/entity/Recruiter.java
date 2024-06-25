@@ -5,16 +5,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
-public class Recruiter extends Utilisateur {
+public class Recruiter {
 
 
     @Id
     private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String role;
+    private LocalDateTime inscriptionDate;
     @ManyToMany(mappedBy = "recruiterList")
     private List<Entreprise> entrepriseList;
+
 
 }
