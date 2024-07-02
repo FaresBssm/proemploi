@@ -19,7 +19,6 @@ public class Recruiter {
     private String lastName;
     private String email;
     private String password;
-    private String role;
     private LocalDateTime inscriptionDate;
     @ManyToMany(mappedBy = "recruiterList")
     private List<Entreprise> entrepriseList;

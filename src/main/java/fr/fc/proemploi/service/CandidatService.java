@@ -11,9 +11,10 @@ import java.util.Optional;
 
 @Service
 public class CandidatService {
-    @Autowired
 
+    @Autowired
     private CandidatRepository candidatRepository;
+
     public Candidat saveCandidat(Candidat candidat) {
         return candidatRepository.save(candidat);
     }
@@ -26,5 +27,17 @@ public class CandidatService {
     }
     public void deleteCandidatById(Long id) {
         candidatRepository.deleteById(id);
+    }
+
+    public List<Candidat> findByExperience(Long experience) {
+        return candidatRepository.findByExperience(experience);
+    }
+
+    public Optional<Candidat> findCandidatWithMinExperience() {
+        return candidatRepository.findAll().stream().min((c1,c2)->Integer.compare(c1.getExperince(),c2.getExperince()));
+    }
+
+    public Optional<Candidat> findCandidatWithMaxExperience() {
+        return  candidatRepository.findAll().stream().max((c1,c2)->Integer.compare(c1.getExperince(),c2.getExperince()));
     }
 }
