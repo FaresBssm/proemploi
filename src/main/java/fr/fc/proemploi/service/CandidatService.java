@@ -29,15 +29,4 @@ public class CandidatService {
         candidatRepository.deleteById(id);
     }
 
-    public List<Candidat> findByExperience(Long experience) {
-        return candidatRepository.findByExperience(experience);
-    }
-
-    public Optional<Candidat> findCandidatWithMinExperience() {
-        return candidatRepository.findAll().stream().min((c1,c2)->Integer.compare(c1.getExperince(),c2.getExperince()));
-    }
-
-    public Optional<Candidat> findCandidatWithMaxExperience() {
-        return  candidatRepository.findAll().stream().max((c1,c2)->Integer.compare(c1.getExperince(),c2.getExperince()));
-    }
 }

@@ -1,7 +1,7 @@
 package fr.fc.proemploi.resources;
 
 import fr.fc.proemploi.entity.Candidat;
-import fr.fc.proemploi.repository.CandidatRepository;
+import fr.fc.proemploi.entity.Experience;
 import fr.fc.proemploi.service.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +43,18 @@ public class CandidatResource {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}/experience")
+    public ResponseEntity<List<Experience>> getExperience(@PathVariable Long id) {
+        Optional<Candidat> candidat = candidatService.getCandidatById(id);
+        return candidat.map(c -> ResponseEntity.ok(c.getExperiences())).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/with-skills")
+    public ResponseEntity<List<Candidat>> getCandidatWithCompetence() {
+        List<Candidat> candidats = candidatService.getAllCandidats();
+        return ResponseEntity.ok(candidats);
+    }
+
 
     }
