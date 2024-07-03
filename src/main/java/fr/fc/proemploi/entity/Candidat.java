@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Entity
@@ -27,4 +28,13 @@ public class Candidat {
     @OneToMany(mappedBy = "candidat",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Experience> experiences;
 
+    public long calculateExperience() {
+        long nbDaysExperience = 0;
+
+        for (Experience experience : experiences){
+            nbDaysExperience = nbDaysExperience + ChronoUnit.DAYS.between(experience.getStartDate(), experience.getEndDate());
+        }
+
+        return nbDaysExperience;
+    }
 }

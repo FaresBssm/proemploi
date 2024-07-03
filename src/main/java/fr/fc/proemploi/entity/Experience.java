@@ -1,6 +1,7 @@
 package fr.fc.proemploi.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -33,6 +34,7 @@ public class Experience {
 
     @ManyToOne
     @JoinColumn(name = "candidat_id")
+    @JsonIgnore
     private Candidat candidat;
 
 }
