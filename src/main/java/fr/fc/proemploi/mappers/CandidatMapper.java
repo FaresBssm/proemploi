@@ -4,7 +4,6 @@ import fr.fc.proemploi.dto.CandidatDto;
 import fr.fc.proemploi.entity.Candidat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
@@ -19,7 +18,14 @@ public class CandidatMapper {
                 .lastName(candidat.getLastName())
                 .email(candidat.getEmail())
                 .build();
+    }
 
 
+    public Candidat mapToCandidat(CandidatDto candidatDto) {
+        return Candidat.builder()
+                .email(candidatDto.getEmail())
+                .firstName(candidatDto.getFirstName())
+                .lastName(candidatDto.getLastName())
+                .build();
     }
 }

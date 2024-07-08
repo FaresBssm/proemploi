@@ -5,6 +5,7 @@ import fr.fc.proemploi.entity.Candidat;
 import fr.fc.proemploi.entity.Experience;
 import fr.fc.proemploi.service.CandidatService;
 import jakarta.annotation.Nullable;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/candidat")
-
+@Slf4j
 public class CandidatResource {
+
     @Autowired
     private CandidatService candidatService;
 
@@ -65,6 +67,16 @@ public class CandidatResource {
                                                 @RequestParam(name = "maxExperience", defaultValue = "9999999") @Nullable Long maxExperience) {
         return candidatService.searchByExperience(minExperience, maxExperience);
 
+    }
+
+    @PostMapping("add")
+    public String addCandidate(@RequestBody CandidatDto candidatDto) {
+        try {
+            candidatService.validateCandidateAndPersist(candidatDto);
+            return "Canidat crée avec succès";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
 

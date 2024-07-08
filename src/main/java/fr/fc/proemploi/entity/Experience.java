@@ -10,11 +10,9 @@ import java.util.List;
 
 @Entity
 @Data
-
 public class Experience {
 
     @Id
-
     private Long id;
 
     @Column(nullable = false)
